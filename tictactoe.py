@@ -1,66 +1,94 @@
 def printBoard(board):
+    """Print a given TicTacToe board stored in a list onto the console."""
     print("|"+board[0]+"|"+board[1]+"|"+board[2]+"|")
     print("|"+board[3]+"|"+board[4]+"|"+board[5]+"|")
     print("|"+board[6]+"|"+board[7]+"|"+board[8]+"|")
 
 def ask(board, op):
+    """Ask the user for a tile in the board between 1 and 9 to set their respective play."""
     while True:
-        casa = int(input("Casa do "+op+": "))-1
-        if casa in range(9) and board[casa]=="_":
-            board[casa]=op
-            printBoard(board)
-            break
+        while True:
+            try:
+                tile = int(input("Tile "+op+": "))-1
+                break
+            #If the value
+            except ValueError:
+                print("Please, enter a value between 1 and 9!")
+                
+        if casa in range(9):
+            if board[casa]=="_":
+                board[casa]=op
+                printBoard(board)
+                break
+            else:
+                print("This tile is already occupied by {}!".format(board[casa]))
         else:
-            print("Comando inválido")
+            print("Enter a value between 1 and 9!")
 
     return board
 
 def checkWin(board):
-    x=0
+    """Check if the current board configurates a win for one of the players or a tie.
+
+    True return instructs to keep playing for there was not a win condition or a tie.
+    False return instructs to stop playing for there was a win condition or a tie.
+    """
+
+    #Chech if the value of the diagonals is not null and equal
+    if board[0]==board[4]==board[8]!="_":
+        print(board[0] + " WON!")
+        return False
+    if board[2]==board[4]==board[6]!="_":
+        print(board[2] + " WON!")
+        return False
+
+    #Check if the value in any row or column is not null and equal
+    for i in range(3):
+        if board[i]==board[i+3]==board[i+6]!="_":
+            print(board[i] + " WON!")
+            return False
+        if board[i*3]==board[i*3+1]==[i*3+2]!="_":
+            print(board[i*3] + " WON!")
+            return False
+
+    #Count all the filled tiles, if all the tiles are filled and there is not a win, it has been a tie
     for i in range(9):
         if board[i]=="_":
+            x=0
             break
         else:
             x=i
-
+            
     if x==8:
-        print("Foi empate!")
+        print("It was a tie!")
         return False
     
-    if board[0]==board[4]==board[8]!="_":
-        print(board[0] + " venceu!")
-        return False
-    if board[2]==board[4]==board[6]!="_":
-        print(board[2] + " venceu!")
-        return False
-
-    for i in range(3):
-        if board[i]==board[i+3]==board[i+6]!="_":
-            print(board[i] + " venceu!")
-            return False
-        if board[i*3]==board[i*3+1]==[i*3+2]!="_":
-            print(board[i*3] + " venceu!")
-            return False
-        
     return True
 
-run=True
-while run==True:
-    board=["_", "_", "_", "_", "_", "_", "_", "_", "_"]
-    printBoard(board)
+def tictactoe():
+    """The main function of the TicTacToe game.
 
-    gameRun=True;
-    while gameRun==True:
-        board = ask(board, "X")
-        
-        gameRun = checkWin(board)
-        if gameRun==False:
+    Declare a list of size 9 filled with underscores for the board.
+    Alternate between turns for the X player and the O player.
+    Check for win conditions after each turn.
+    """
+    while True:
+        board=["_", "_", "_", "_", "_", "_", "_", "_", "_"]
+        printBoard(board)
+
+        while True:
+            board = ask(board, "X")
+
+            if checkWin(board)==False:
+                break
+            
+            board = ask(board, "O")
+            
+            if checkWin(board)==False:
+                break
+
+        again = input("Play Again? (Y/N)? ")
+        if again.lower()=="n" or again=="2":
             break
-        
-        board = ask(board, "O")
-        
-        gameRun = checkWin(board)
 
-    again = input("Jogar de novo (S/N)? ")
-    if again.lower()=="n" or again=="2":
-        run=False
+#tictactoe()
