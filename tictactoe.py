@@ -2,22 +2,23 @@ import functions as f
 
 def printBoard(board):
     """Print a given TicTacToe board stored in a list onto the console."""
-    print("|{}|{}|{}|".format(board[0], board[1], board[2]))
-    print("|{}|{}|{}|".format(board[3], board[4], board[5]))
-    print("|{}|{}|{}|".format(board[6], board[7], board[8]))
+    print("|{}|{}|{}|".format(str(board[0]), str(board[1]), str(board[2])))
+    print("|{}|{}|{}|".format(str(board[3]), str(board[4]), str(board[5])))
+    print("|{}|{}|{}|".format(str(board[6]), str(board[7]), str(board[8])))
 
 def ask(board, op):
     """Ask the user for a tile in the board between 1 and 9 to set their respective play."""
     while True:
-        tile = f.inputInt("Tile {}: ".format(op))-1
-                
+        tile = f.inputInt(10, "Tile {}: ".format(op))-1
+        
         if tile in range(9):
             if board[tile]=="_":
                 board[tile]=op
-                printBoard(tile)
+                f.clear()
+                printBoard(board)
                 break
             else:
-                print("This tile is already occupied by {}!".format(board[casa]))
+                print("This tile is already occupied by {}!".format(board[tile]))
         else:
             print("Enter a value between 1 and 9!")
 
@@ -84,9 +85,8 @@ def tictactoe():
                 break
 
         again = input("Play Again? (Y/N)? ")
+        f.clear()
         if again.lower()=="n" or again=="2":
             break
 
-    f.clear()
-
-#tictactoe()
+tictactoe()

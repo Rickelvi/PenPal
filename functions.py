@@ -20,10 +20,12 @@ def inputInt(lim, prompt=""):
             choice = 0
             while choice not in range(1, lim):
                 choice = int(input(prompt))
+                if choice not in range(1,lim):
+                    print("Please, enter a value between 1 and {}!".format(lim-1))
             break
         #If the value is not an integer
         except ValueError:
-            print("Please, enter a value between 1 and {}!".format(lim))
+            print("Please, enter a value between 1 and {}!".format(lim-1))
 
     return choice
 
