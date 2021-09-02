@@ -1,24 +1,20 @@
+import functions as f
+
 def printBoard(board):
     """Print a given TicTacToe board stored in a list onto the console."""
-    print("|"+board[0]+"|"+board[1]+"|"+board[2]+"|")
-    print("|"+board[3]+"|"+board[4]+"|"+board[5]+"|")
-    print("|"+board[6]+"|"+board[7]+"|"+board[8]+"|")
+    print("|{}|{}|{}|".format(board[0], board[1], board[2]))
+    print("|{}|{}|{}|".format(board[3], board[4], board[5]))
+    print("|{}|{}|{}|".format(board[6], board[7], board[8]))
 
 def ask(board, op):
     """Ask the user for a tile in the board between 1 and 9 to set their respective play."""
     while True:
-        while True:
-            try:
-                tile = int(input("Tile "+op+": "))-1
-                break
-            #If the value
-            except ValueError:
-                print("Please, enter a value between 1 and 9!")
+        tile = f.inputInt("Tile {}: ".format(op))-1
                 
-        if casa in range(9):
-            if board[casa]=="_":
-                board[casa]=op
-                printBoard(board)
+        if tile in range(9):
+            if board[tile]=="_":
+                board[tile]=op
+                printBoard(tile)
                 break
             else:
                 print("This tile is already occupied by {}!".format(board[casa]))
@@ -36,19 +32,19 @@ def checkWin(board):
 
     #Chech if the value of the diagonals is not null and equal
     if board[0]==board[4]==board[8]!="_":
-        print(board[0] + " WON!")
+        print("{} WON!".format(board[0]))
         return False
     if board[2]==board[4]==board[6]!="_":
-        print(board[2] + " WON!")
+        print("{} WON!".format(board[2]))
         return False
 
     #Check if the value in any row or column is not null and equal
     for i in range(3):
         if board[i]==board[i+3]==board[i+6]!="_":
-            print(board[i] + " WON!")
+            print("{} WON!".format(board[i]))
             return False
         if board[i*3]==board[i*3+1]==[i*3+2]!="_":
-            print(board[i*3] + " WON!")
+            print("{} WON!".format(board[i*3]))
             return False
 
     #Count all the filled tiles, if all the tiles are filled and there is not a win, it has been a tie
@@ -90,5 +86,7 @@ def tictactoe():
         again = input("Play Again? (Y/N)? ")
         if again.lower()=="n" or again=="2":
             break
+
+    f.clear()
 
 #tictactoe()
