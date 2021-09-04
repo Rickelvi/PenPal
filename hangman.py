@@ -84,10 +84,12 @@ def hangman():
                 body = increase_miss(body, miss)
 
             if "_" not in under:
+                f.clear()
                 draw(guessed_letters, miss, body, under, tip)
                 print("You won! :D")
                 break
             if miss == 6:
+                f.clear()
                 draw(guessed_letters, miss, body, under, tip)
                 print("You lost! Sorry!")
                 print("The word was {}!".format(word))
