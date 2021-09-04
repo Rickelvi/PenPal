@@ -1,6 +1,7 @@
 import functions as f
 import rps
 import tictactoe
+import hangman
 
 def gamesMenu(players):
     """A menu for choosing the available pen and paper games to play."""
@@ -22,7 +23,8 @@ def gamesMenu(players):
             
         elif players==2:
             print("1. TicTacToe")
-            print("2. Back")
+            print("2. Hangman")
+            print("3. Back")
 
             choice = f.inputInt(4)
             f.clear()
@@ -30,10 +32,13 @@ def gamesMenu(players):
             if choice==1:
                 tictactoe.tictactoe()
                 choice=0
+            if choice==2:
+                hangman.hangman()
+                choice=0
             else:
                 break
         
-def mainMenu():
+def main():
     """The game hub main menu, allowing to exit the console."""
     while True:
         print("\t\tPENPAL!\n")
@@ -48,5 +53,6 @@ def mainMenu():
             gamesMenu(players)
         else:
             break
-        
-mainMenu()
+
+if __name__ == '__main__':
+    main()
