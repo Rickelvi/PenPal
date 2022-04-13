@@ -8,20 +8,20 @@ def gamesMenu(players):
     while True:
         print("CHOOSE YOUR GAME:\n")
 
-        if players==1:
+        if players == 1:
             print("1. Rock, Paper, Scissors")
             print("2. Back")
 
             choice = f.inputInt(4)
             f.clear()
             
-            if choice==1:
+            if choice == 1:
                 rps.rps()
-                choice=0
+                choice = 0
             else:
                 break
             
-        elif players==2:
+        elif players == 2:
             print("1. TicTacToe")
             print("2. Hangman")
             print("3. Back")
@@ -29,12 +29,12 @@ def gamesMenu(players):
             choice = f.inputInt(4)
             f.clear()
             
-            if choice==1:
+            if choice == 1:
                 tictactoe.tictactoe()
-                choice=0
-            if choice==2:
+                choice = 0
+            if choice == 2:
                 hangman.hangman()
-                choice=0
+                choice = 0
             else:
                 break
         
@@ -49,7 +49,7 @@ def main():
         players = f.inputInt(4)
         f.clear()
 
-        if players in range(1,3):
+        if players in range(1, 3):
             gamesMenu(players)
         else:
             break

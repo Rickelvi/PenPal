@@ -18,6 +18,7 @@ def inputInt(lim, prompt=""):
     while True:
         try:
             choice = 0
+            
             while choice not in range(1, lim):
                 choice = int(input(prompt))
                 if choice not in range(1,lim):
@@ -32,6 +33,7 @@ def inputInt(lim, prompt=""):
 def playAgain():
     """Ask the player whether to play again or not."""
     valid, run = "yn12", "0"
+
     while run[0].lower() not in valid:
         run = input("Play Again? (Y/N)? ")
 

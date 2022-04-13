@@ -3,7 +3,7 @@ from random import randint
 
 def intToPlay(play):
     """Given the player or computer play as an int, returns its value as a string."""
-    if play==1:
+    if play == 1:
         playStr="Rock"
     elif play==2:
         playStr="Paper"
