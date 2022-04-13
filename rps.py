@@ -4,11 +4,11 @@ from random import randint
 def intToPlay(play):
     """Given the player or computer play as an int, returns its value as a string."""
     if play == 1:
-        playStr="Rock"
-    elif play==2:
-        playStr="Paper"
-    elif play==3:
-        playStr="Scissors"
+        playStr = "Rock"
+    elif play == 2:
+        playStr = "Paper"
+    elif play == 3:
+        playStr = "Scissors"
 
     return playStr
 
@@ -28,11 +28,11 @@ def rpsCompare(comp, player):
     """Compares the two plays and gives their result as a tie, win or loss for the player."""
     rule(comp, player)
     
-    if comp==player:
+    if comp == player:
         print("It was a tie!")
-    elif comp==player+1 or comp==player-2:
+    elif comp == player+1 or comp == player-2:
         print("You lost! :c")
-    elif player==comp+1 or player==comp-2:
+    elif player == comp+1 or player == comp-2:
         print("You win! :D")
 
 def rps():
@@ -56,7 +56,7 @@ def rps():
 
         print("")
         run = f.playAgain()
-        if run=="n" or run=="2":
+        if run == "n" or run == "2":
             break
 
     f.clear()

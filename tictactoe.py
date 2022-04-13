@@ -12,8 +12,8 @@ def ask(board, op):
         tile = f.inputInt(10, "Tile {}: ".format(op))-1
         
         if tile in range(9):
-            if board[tile]=="_":
-                board[tile]=op
+            if board[tile] == "_":
+                board[tile] = op
                 f.clear()
                 printBoard(board)
                 break
@@ -32,31 +32,31 @@ def checkWin(board):
     """
 
     #Chech if the value of the diagonals is not null and equal
-    if board[0]==board[4]==board[8]!="_":
+    if board[0] == board[4] == board[8] != "_":
         print("{} WON!".format(board[0]))
         return False
-    if board[2]==board[4]==board[6]!="_":
+    if board[2] == board[4] == board[6] != "_":
         print("{} WON!".format(board[2]))
         return False
 
     #Check if the value in any row or column is not null and equal
     for i in range(3):
-        if board[i]==board[i+3]==board[i+6]!="_":
+        if board[i] == board[i+3] == board[i+6] != "_":
             print("{} WON!".format(board[i]))
             return False
-        if board[i*3]==board[i*3+1]==[i*3+2]!="_":
+        if board[i*3] == board[i*3+1] == [i*3+2] != "_":
             print("{} WON!".format(board[i*3]))
             return False
 
     #Count all the filled tiles, if all the tiles are filled and there is not a win, it has been a tie
     for i in range(9):
-        if board[i]=="_":
-            x=0
+        if board[i] == "_":
+            x = 0
             break
         else:
-            x=i
+            x = i
             
-    if x==8:
+    if x == 8:
         print("It was a tie!")
         return False
     
@@ -76,17 +76,17 @@ def tictactoe():
         while True:
             board = ask(board, "X")
 
-            if checkWin(board)==False:
+            if not checkWin(board):
                 break
             
             board = ask(board, "O")
             
-            if checkWin(board)==False:
+            if not checkWin(board):
                 break
 
         again = input("Play Again? (Y/N)? ")
         f.clear()
-        if again.lower()=="n" or again=="2":
+        if again.lower() == "n" or again == "2":
             break
 
 tictactoe()
